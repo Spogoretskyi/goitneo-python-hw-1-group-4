@@ -31,7 +31,7 @@ def change_username_phone(args, contacts):
         name, phone = args
     except  ValueError:
         return "Values should be name and phone."
-    name = ''.join(name).lower()
+    name = ''.join(name)
     #should be checked for phone number, out of scope
     phone = ''.join(phone)
     if is_contact_exists(name, contacts):
