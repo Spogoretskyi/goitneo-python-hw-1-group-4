@@ -1,8 +1,10 @@
 from collections import defaultdict
 from datetime import datetime
 
+
 def get_day(date):
     return date.strftime("%A")
+
 
 def get_birthdays_per_week(users):
     birthdays_per_week = defaultdict(list)

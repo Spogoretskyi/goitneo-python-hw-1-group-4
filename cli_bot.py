@@ -3,25 +3,28 @@ def parse_input(user_input):
     cmd = cmd.strip().lower()
     return cmd, *args
 
+
 def add_contact(args, contacts):
     try:
         name, phone = args
     except  ValueError:
         return "Values should be name and phone."
     #should be checked for phone number, out of scope
-    contacts[name.lower()] = phone
+    contacts[name] = phone
     return "Contact added."
+
 
 def add_username_phone(args, contacts):
     try:
         name = args
     except  ValueError:
         return "Value should be name."
-    name = ''.join(name).lower()
+    name = ''.join(name)
     if is_contact_exists(name, contacts):
         return contacts[name]
     else:
         return "No such contact in the list."
+
 
 def change_username_phone(args, contacts):
     try:
@@ -36,11 +39,13 @@ def change_username_phone(args, contacts):
         return "Phone was changed."
     else:
         return "No such contact in the list."
-    
+
+
 def is_contact_exists(name, contacts):
      if contacts.get(name) != None:
          return True
      return False
+
 
 def main():
     contacts = {}
@@ -61,7 +66,10 @@ def main():
         elif command == "phone":
             print(add_username_phone(args, contacts))
         elif command == "all":
-            print(contacts)
+            text = ""
+            for k, v in contacts.items():
+                text += f"{k} {v}\n"
+            print(text)
         else:
             print("Invalid command.")
 
